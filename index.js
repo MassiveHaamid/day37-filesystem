@@ -2,16 +2,15 @@ const express = require('express')
 const fs = require('fs')
 const app = express()
 const PORT = process.env.PORT || 3000
-
 app.get('/',(req,res)=>{
     try {
         let dateTime = new Date().toISOString() 
-        fs.writeFile(`dateTime/${dateTime}.txt`,dateTime,(err)=>{
+        fs.writeFile(`dateTime.txt`,dateTime,(err)=>{
             if(err)
                 throw err
             else
             {
-                fs.readFile(`dateTime/${dateTime}.txt`,(err,data)=>{
+                fs.readFile(`dateTime.txt`,(err,data)=>{
                     if(err)
                         throw err
                     else
@@ -25,4 +24,4 @@ app.get('/',(req,res)=>{
     }
 })
 
- app.listen(PORT,()=>console.log("App Listening Port"+ PORT))
+ app.listen(PORT,()=>console.log(`App Listening Port ${PORT}`))
